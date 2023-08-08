@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hd.backend.mapper.BoardMapper">
+    <select id="list" resultType="Board">
+        select * from Board order by SEQ desc
+    </select>
+    <select id="selectBySeq" resultType="Board" parameterType="long">
+        select * from Board where SEQ=#{seq}
+    </select>
+    <insert id="insertSelectKey" parameterType="Board">
+        <selectKey keyProperty="seq" order="BEFORE" resultType="long">
+            select Board_SEQ.nextval from dual
+        </selectKey>
+        insert into Board values( #{seq}, #{writer}, #{email}, #{subject}, #{content}, SYSDATE, SYSDATE )
+    </insert>
+    <insert id="contentSelectKey" parameterType="Board">
+        <selectKey keyProperty="seq" order="BEFORE" resultType="long">
+            select Board_SEQ.nextval from dual
+        </selectKey>
+            select * from BOARD where SEQ = #{seq}
+    </insert>
+    <update id="update_ok" parameterType="Board">
+        update BOARD set EMAIL=#{email},SUBJECT=#{subject},CONTENT=#{content} where SEQ=#{seq}
+    </update>
+    <delete id="delete" parameterType="long">
+        delete from Board where SEQ=#{seq}
+    </delete>
+</mapper>
