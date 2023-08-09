@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -33,32 +33,25 @@
 	           <th>이름</th>
 	           <th width="10%">삭제</th>
 	        </tr>
-            
-            
+
+            <c:if test="${empty fileups}">
+                <tr>
+                    <td align="center" colspan="3">파일이 하나도 없음</td>
+                </tr>
+            </c:if>
+            <c:forEach items="${fileups}" var="fileup">
 	           <tr>
 	             <td align="center">
-                   16
+                   ${fileup.id}
                  </td>
 	             <td align="center">
-	               <a href="attach/16">MVC_매커니즘.png</a>
+	               <a href="attach/${fileup.id}">${fileup.orgnm}</a>
 	             </td>
 	             <td align="center">
-	               <a href="remove.do?id=16">삭제</a>
-	             </td>
-	          </tr>
-            
-	           <tr>
-	             <td align="center">
-                   17
-                 </td>
-	             <td align="center">
-	               <a href="attach/17">AOP개념.png</a>
-	             </td>
-	             <td align="center">
-	               <a href="remove.do?id=17">삭제</a>
+	               <a href="remove.do?id=${fileup.id}">삭제</a>
 	             </td>
 	          </tr>
-            
+            </c:forEach>
 	    </table>
 	    </center>
 	</body>

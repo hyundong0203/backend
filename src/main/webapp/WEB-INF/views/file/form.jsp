@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -12,17 +11,17 @@
       <h4>단일 파일 업로드</h4>
       <input type="file" name="file">
       <!-- 파일 첨부시 특정 확장자만 선택가능하게 하기 예들 -->
-
+      <!--
       <input type="file" name="file" accept=".gif, .jpg, .png">
       <input type="file" name="file" accept="image/gif, image/jpeg, image/png">
       <input type="file" name="file" accept="audio/*">
       <input type="file" name="file" accept="video/*">
       <input type="file" name="file" accept="image/*">
-
+      -->
 
       <h4>다중 파일 업로드</h4>
       <input type="file" multiple="multiple" name="files">
       <input type="submit"/>
     </form>
   </body>
-</html>
+</html>s

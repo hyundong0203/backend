@@ -2,6 +2,7 @@ package hd.backend.service;
 
 import hd.backend.domain.FileUp;
 import hd.backend.repository.FileRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-@RequiredArgsConstructor  //@Autowired를 안써도됨 생성자를 만들어줌 자동으로
+@RequiredArgsConstructor
 @Service
 public class FileServiceImpl implements FileService {
     @org.springframework.beans.factory.annotation.Value("${file.dir}")
@@ -36,9 +37,8 @@ public class FileServiceImpl implements FileService {
                 .savednm(savedName)
                 .savedpath(savedPath)
                 .build();
-        mf.transferTo(new File(savedPath)); //실제로 로컬에  uuid를 파일명으로 저장
-        FileUp savedFile = fileRepository.save(fileUp);  //DB에 파일정보 저장 insert
-
+        mf.transferTo(new File(savedPath)); //실제로 로컬에 uuid를 파일명으로 저장
+        FileUp savedFile = fileRepository.save(fileUp); //DB에 insert
         return savedFile.getId();
     }
     //(2) 파일다운로드
@@ -47,11 +47,22 @@ public class FileServiceImpl implements FileService {
         List<FileUp> fileUps = fileRepository.findAll();
         return fileUps;
     }
-
     @Override
     public FileUp getFileUp(long file_id) {
-        FileUp fileUp = fileRepository.findById(file_id).orElse(null); //if문생략가능 .orElse로
+        FileUp fileUp = fileRepository.findById(file_id).orElse(null);
         return fileUp;
+    }
+    //(3) 파일 삭제
+    @Transactional
+    @Override
+    public void remove(long id){
+        FileUp fileUp =fileRepository.findById(id).orElse(null);
+        String savedpath =fileUp.getSavedpath();
+        File f = new File(savedpath);
+        if(f.exists()){
+            f.delete();
+        }
+        fileRepository.deleteById(id);
     }
 }
 

@@ -23,7 +23,9 @@
         <a href="ajax/test4.do">Ajax4</a>(JSP)<br/>
 
         <a href="auto/auto.do">Autocomplete(자동완성)</a><br/>
-        <a href="drag_drop/form_dd.do">Drag&Drop폼</a>
+        <a href="drag_drop/form_dd.do">Drag&Drop폼</a><br/>
         <a href="drag_drop/list.do">Drag&Drop리스트</a><br/>
+
+        <a href="chart/chart.do">Google Chart</a><br/>
     </body>
 </html>
