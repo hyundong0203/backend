@@ -18,6 +18,7 @@ public class AddressAjaxServiceImpl implements AddressAjaxService {
     }
     @Override
     public List<Address> listS() {
+
         return repository.findAll(Sort.by(Sort.Direction.DESC,"seq"));
     }
 

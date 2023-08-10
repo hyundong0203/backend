@@ -27,5 +27,10 @@
         <a href="drag_drop/list.do">Drag&Drop리스트</a><br/>
 
         <a href="chart/chart.do">Google Chart</a><br/>
+        <a href="rest_addr/create1?name=오늘은&addr=수요일">REST</a><br/>
+        <a href="rest_addr/read">REST1</a><br/>
+        <a href="rest_board/read">RESTBoard</a><br/>
+
+        <a href="login/form.do">로그인</a><br/>
     </body>
 </html>

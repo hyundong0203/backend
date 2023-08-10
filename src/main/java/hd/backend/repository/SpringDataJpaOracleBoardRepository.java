@@ -11,6 +11,6 @@ import java.util.List;
 public interface SpringDataJpaOracleBoardRepository extends JpaRepository<Board,Long> {
     List<Board> findByseq(long seq);
     Board findBySeq(long seq);
-
+//    List<Board> findByNameContaining(String name);
     Page<Board> findByOrderBySeqDesc(Pageable pageable);
 }
