@@ -15,7 +15,7 @@
         <a href="board_page/list.do">게시판(페이징)</a><br/>
 
         <a href="file/upload.do">파일폼</a><br/>
-        <a href="file/list.do">파일리스트</a><br/>
+        <a href="file/list.do">파일리스트</a>(회원가입서비스)<br/>
 
         <a href="ajax/test1.do">Ajax1</a>
         <a href="ajax/test2.do">Ajax2</a>&nbsp;&nbsp;
@@ -31,6 +31,16 @@
         <a href="rest_addr/read">REST1</a><br/>
         <a href="rest_board/read">RESTBoard</a><br/>
 
-        <a href="login/form.do">로그인</a><br/>
+        <c:choose>
+            <c:when test="${empty loginOkUser}">
+                <a href="login/form.do">로그인</a>
+            </c:when>
+            <c:otherwise>
+                <font style="color:green">${loginOkUser.name}</font>님 어서오세요<br/>
+                <a href="login/logout.do">로그아웃</a>
+            </c:otherwise>
+        </c:choose>
+
+
     </body>
 </html>
